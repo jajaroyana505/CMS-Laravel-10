@@ -33,22 +33,24 @@ Route::get('/', function () {
 
 
 
-Route::group(['prefix' => 'api'], function () {
-    Route::post('/categories', [CategoryApi::class, 'store']);
-});
+Route::group(['prefix' => 'api'], function () {});
 
-Route::group(['middleware' => 'auth'], function () {
-    Route::get("/dashboard", [DashboardController::class, 'index']);
-    Route::resource("/articles", ArticleController::class);
-    Route::resource("/categories", CategoryController::class)->only(['index', 'store', 'update', 'destroy']);
-    Route::resource("/users", UserController::class);
-});
+Route::group(['middleware' => 'auth'], function () {});
 
 
 
 
 // Route middleware spatie
-Route::group(['middleware' => ['role:manager']], function () {});
+Route::group(['middleware' => ['role:author|moderator']], function () {
+    Route::resource("/articles", ArticleController::class);
+    Route::resource("/categories", CategoryController::class)->only(['index', 'store', 'update', 'destroy']);
+});
+// Route middleware spatie
+Route::group(['middleware' => ['role:moderator']], function () {
+    Route::get("/dashboard", [DashboardController::class, 'index']);
+    Route::resource("/users", UserController::class);
+    Route::post('/categories', [CategoryApi::class, 'store']);
+});
 Route::group(['middleware' => ['permission:publish articles']], function () {});
 Route::group(['middleware' => ['role_or_permission:publish articles']], function () {});
 
@@ -79,8 +81,8 @@ Route::get('give-permission-to-role', function () {
 
 Route::get('assign-role-to-user', function () {
 
-    $user = User::findOrFail(1); // Toni
-    $role = Role::findOrFail(1); // Author
+    $user = User::findOrFail(3); // Toni
+    $role = Role::findOrFail(3); // Author
 
     $user->assignRole($role);
 });

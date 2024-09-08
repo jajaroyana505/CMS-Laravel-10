@@ -76,6 +76,19 @@
                                 <input class="form-control" type="password" id="password_confirmation" name="password_confirmation">
                             </div>
 
+                            <div class="mb-2">
+                                <div class="form-check d-flex">
+                                    @foreach ($roles as $role)
+                                    <div class="">
+                                        <input class="form-check-input" {{ in_array($role->name, old('roles', [])) ? 'checked' : ''; }} name="roles[]" type="checkbox" value="{{$role->name}}" id="{{$role->name}}">
+                                        <label class="form-check-label" for="{{$role->name}}">
+                                            {{ $role->name}}
+                                        </label>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+
                             <div class="mb-2 mt-4">
                                 <button class="btn btn-primary float-end" type="submit">Create</button>
                             </div>

@@ -27,14 +27,15 @@
     <div class="sidebar-wrapper scrollbar scrollbar-inner">
         <div class="sidebar-content">
             <ul class="nav nav-secondary">
-
-
+                @role('moderator')
                 <li class="nav-item {{ $page == 'dashboard'??'active';}}">
                     <a href="{{asset('/dashboard')}}">
                         <i class="fas fa-home"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
+
+                @endrole
 
                 <li class="nav-section">
                     <span class="sidebar-mini-icon">
@@ -58,6 +59,7 @@
                     </a>
 
                 </li>
+                @role('moderator')
                 <li class="nav-item {{ $page == 'user'?'active':'';}}">
                     <a href="{{url('/users')}}">
                         <i class="fas fa-users"></i>
@@ -66,6 +68,8 @@
                     </a>
 
                 </li>
+
+                @endrole
 
                 <li class="nav-section">
                     <span class="sidebar-mini-icon">

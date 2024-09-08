@@ -61,7 +61,7 @@
                                 <th>No</th>
                                 <th>Name</th>
                                 <th>Email</th>
-                                <th>Created At</th>
+                                <th>Roles</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -103,8 +103,8 @@
                 name: "email",
             },
             {
-                data: "created_at",
-                name: "created_at",
+                data: "role",
+                name: "role",
             },
             {
                 data: "button",
