@@ -76,7 +76,8 @@
                                 <input class="form-control" type="password" id="password_confirmation" name="password_confirmation">
                             </div>
 
-                            <div class="mb-2">
+                            <div class="mb-2 mt-3">
+                                <label for="" class="form-label">Select Roles :</label>
                                 <div class="form-check d-flex">
                                     @foreach ($roles as $role)
                                     <div class="">
@@ -87,6 +88,7 @@
                                     </div>
                                     @endforeach
                                 </div>
+                                <small>*Select one or more roles</small>
                             </div>
 
                             <div class="mb-2 mt-4">

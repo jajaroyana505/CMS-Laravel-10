@@ -41,12 +41,12 @@ Route::group(['middleware' => 'auth'], function () {});
 
 
 // Route middleware spatie
-Route::group(['middleware' => ['role:author|moderator']], function () {
+Route::group(['middleware' => ['role:editor|admin']], function () {
     Route::resource("/articles", ArticleController::class);
     Route::resource("/categories", CategoryController::class)->only(['index', 'store', 'update', 'destroy']);
 });
 // Route middleware spatie
-Route::group(['middleware' => ['role:moderator']], function () {
+Route::group(['middleware' => ['role:admin']], function () {
     Route::get("/dashboard", [DashboardController::class, 'index']);
     Route::resource("/users", UserController::class);
     Route::post('/categories', [CategoryApi::class, 'store']);
