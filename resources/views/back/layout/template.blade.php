@@ -15,6 +15,7 @@
 
     <!-- Fonts and icons -->
     <script src="{{asset('/')}}assets/js/plugin/webfont/webfont.min.js"></script>
+    <script src="https://kit.fontawesome.com/b20261a34a.js" crossorigin="anonymous"></script>
     <script>
         WebFont.load({
             google: {

@@ -17,8 +17,9 @@ class UsersTablesSeeder extends Seeder
     {
         // Buat user dengan role tertentu
         $user = User::create([
-            'name' => 'admin',
+            'name' => 'Amin',
             'email' => 'admin@email.com',
+            'username' => "admin",
             'password' => bcrypt('admin123'),
         ]);
 

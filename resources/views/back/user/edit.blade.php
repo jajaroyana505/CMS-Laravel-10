@@ -1,5 +1,5 @@
 @extends('back.layout.template')
-@section('title', 'Users Create - Admin')
+@section('title', 'Users Edit - Admin')
 
 @section('content')
 
@@ -24,7 +24,7 @@
                     <i class="icon-arrow-right"></i>
                 </li>
                 <li class="nav-item">
-                    <a href="#">Create</a>
+                    <a href="#">Edit</a>
                 </li>
                 <li class="separator">
                     <i class="icon-arrow-right"></i>
@@ -53,38 +53,37 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
-                        <h3>Create User</h3>
+                        <h3>Edit Data User</h3>
                     </div>
                     <div class="card-body">
-                        <form action="{{ url('users')}}" method="post">
+                        <form action="{{ url('users/'. $user->id)}}" method="post">
+                            @method("PUT")
                             @csrf
                             <div class="mb-2">
                                 <label for="name" class="form-label">Full Name</label>
-                                <input class="form-control" type="text" id="name" name="name" value="{{old('name')}}">
+                                <input class="form-control" type="text" id="name" name="name" value="{{$user->name}}">
                             </div>
                             <div class="mb-2">
                                 <label for="email" class="form-label">Email Address</label>
-                                <input class="form-control" type="email" id="email" name="email" value="{{ old('email')}}">
+                                <input class="form-control" type="email" id="email" name="email" value="{{ $user->email }}">
+                                <input type="hidden" name="oldEmail" value="{{ $user->email }}">
                             </div>
                             <div class="mb-2">
                                 <label for="username" class="form-label">Username</label>
-                                <input class="form-control" type="text" id="username" name="username" value="{{old('username')}}">
-                            </div>
-                            <div class="mb-2">
-                                <label for="password" class="form-label">Password</label>
-                                <input class="form-control" type="password" id="password" name="password">
-                            </div>
-                            <div class="mb-2">
-                                <label for="password_confirmation" class="form-label">Confirm Password</label>
-                                <input class="form-control" type="password" id="password_confirmation" name="password_confirmation">
+                                <input class="form-control" type="text" id="username" name="username" value="{{ $user->username }}">
                             </div>
 
                             <div class="mb-2 mt-3">
                                 <label for="" class="form-label">Select Roles :</label>
                                 <div class="form-check d-flex">
+                                    <?php
+                                    // dd($userRole);
+                                    // die;
+                                    ?>
                                     @foreach ($roles as $role)
+                                    {{$user->Role}}
                                     <div class="">
-                                        <input class="form-check-input" {{ in_array($role->name, old('roles', [])) ? 'checked' : ''; }} name="roles[]" type="checkbox" value="{{$role->name}}" id="{{$role->name}}">
+                                        <input class="form-check-input" {{ in_array($role->name, $userRole->toArray()) ? 'checked' : ''; }} name="roles[]" type="checkbox" value="{{$role->name}}" id="{{$role->name}}">
                                         <label class="form-check-label" for="{{$role->name}}">
                                             {{ $role->name}}
                                         </label>
@@ -95,7 +94,7 @@
                             </div>
 
                             <div class="mb-2 mt-4">
-                                <button class="btn btn-primary float-end" type="submit">Create</button>
+                                <button class="btn btn-primary float-end" type="submit">Save</button>
                             </div>
 
 

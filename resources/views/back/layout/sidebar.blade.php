@@ -59,6 +59,12 @@
                     </a>
 
                 </li>
+                <li class="nav-section">
+                    <span class="sidebar-mini-icon">
+                        <i class="fa fa-ellipsis-h"></i>
+                    </span>
+                    <h4 class="text-section">User Setting</h4>
+                </li>
                 @role('admin')
                 <li class="nav-item {{ $page == 'user'?'active':'';}}">
                     <a href="{{url('/users')}}">
@@ -66,9 +72,14 @@
                         <!-- <i class="fas fa-th-list"></i> -->
                         <p>User</p>
                     </a>
-
                 </li>
-
+                <li class="nav-item {{ $page == 'role'?'active':'';}}">
+                    <a href="{{url('/roles')}}">
+                        <i class="fa-solid fa-clipboard-user"></i>
+                        <!-- <i class="fas fa-th-list"></i> -->
+                        <p>Roles</p>
+                    </a>
+                </li>
                 @endrole
 
                 <li class="nav-section">

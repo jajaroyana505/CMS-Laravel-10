@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
@@ -23,6 +24,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'username',
         'password',
     ];
 
@@ -47,8 +49,9 @@ class User extends Authenticatable
     ];
 
 
-    // public function Role(): BelongsTo
-    // {
-    //     return $this->belongsTo(C::class);
-    // }
+
+    public function Role(): BelongsTo
+    {
+        return $this->belongsTo(Role::class);
+    }
 }
