@@ -59,6 +59,14 @@
                     </a>
 
                 </li>
+                <li class="nav-item {{ $page == 'reservasi'?'active':'';}}">
+                    <a href="{{url('/reservations')}}">
+                        <i class="fas fa-book"></i>
+                        <!-- <i class="fas fa-th-list"></i> -->
+                        <p>Reservation</p>
+                    </a>
+
+                </li>
                 <li class="nav-section">
                     <span class="sidebar-mini-icon">
                         <i class="fa fa-ellipsis-h"></i>
