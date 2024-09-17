@@ -47,34 +47,16 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
-                        <h3>User List</h3>
+                        <h3>Reservation List</h3>
                         <div class="mb-3">
                             <a href="{{ url('users/create')}}" class="btn btn-rounded btn-primary">
                                 <i class="fas fa-plus me-2"></i>
-                                Add User
+                                Create Reservation
                             </a>
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-4">
-                            <form action="{{ url('reservations')}}" method="post">
-                                @csrf
-                                <div class="mb-3">
-                                    <label for="date" class="form-label">Date</label>
-                                    <input type="date" name="date" id="" class="form-control">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="time" class="form-label">Time</label>
-                                    <input type="time" name="time" id="" step="3600" class="form-control">
-                                </div>
-                                <div class="mb-3">
-                                    <button type="submit" class="btn btn-primary">Save</button>
-                                </div>
-                            </form>
 
-                        </div>
-                    </div>
                     <div id="reservasi">
 
                     </div>
@@ -95,11 +77,11 @@
                             <button type="button" onclick="loadReservations()" class="btn btn-primary mb-2">Filter</button>
                         </div>
                     </div>
-                    <table id="reservations-table" class="table table-bordered">
+                    <table id="reservations-table" class="table table-bordered table-hover">
                         <thead>
                             <tr>
                                 <th>Tanggal</th>
-                                <th>Waktu</th>
+                                <th colspan="13">Waktu</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -114,7 +96,9 @@
                                 @if ($time['status'] == 'booked' )
                                 <td class="bg-success">{{$time['time'] }}</td>
                                 @else
-                                <td class=" ">{{$time['time'] }}</td>
+                                <td class=" ">
+                                    <a href="#" onclick="addReservation(this)" data-date="{{ $day['date'] }}" data-time="{{$time['time'] }}">{{$time['time'] }}</a>
+                                </td>
                                 @endif
 
                                 @endforeach
@@ -124,6 +108,25 @@
                     </table>
 
 
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <form action="{{ url('reservations')}}" method="post">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="date" class="form-label">Date</label>
+                                <input type="date" name="date" id="" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                <label for="time" class="form-label">Time</label>
+                                <input type="time" name="time" id="" step="3600" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                        </form>
+
+                    </div>
                 </div>
             </div>
 
@@ -139,6 +142,11 @@
 
 @push('js')
 <script>
+    function addReservation(this) {
+        // console.log()
+        alert(this.data('date'));
+    }
+
     function loadReservations() {
 
         $.ajax({
