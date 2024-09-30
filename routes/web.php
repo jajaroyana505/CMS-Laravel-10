@@ -13,7 +13,9 @@ use App\Http\Controllers\back\UserController;
 use App\Http\Controllers\Back\ArticleController;
 use App\Http\Controllers\Back\CategoryController;
 use App\Http\Controllers\Back\DashboardController;
+use App\Http\Controllers\back\FieldController;
 use App\Http\Controllers\Back\ReservasiController;
+use App\Http\Controllers\back\VendorController;
 use App\Models\User;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -52,6 +54,8 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::resource("/users", UserController::class);
     Route::post('/categories', [CategoryApi::class, 'store']);
     Route::resource("/reservations", ReservasiController::class);
+    Route::resource("/vendors", VendorController::class);
+    Route::resource("/fields", FieldController::class);
 });
 Route::group(['middleware' => ['permission:publish articles']], function () {});
 Route::group(['middleware' => ['role_or_permission:publish articles']], function () {});

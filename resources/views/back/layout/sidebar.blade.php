@@ -96,31 +96,26 @@
                     </span>
                     <h4 class="text-section">Vendor</h4>
                 </li>
-                <li class="nav-item">
-                    <a href="widgets.html">
-                        <i class="fas fa-desktop"></i>
+                <li class="nav-item  {{ $page == 'vendor' ?'active':'';}}">
+                    <a href="{{ url('vendors/')}}">
+                        <i class="fas fa-address-card"></i>
                         <p>Profile</p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="widgets.html">
-                        <i class="fas fa-desktop"></i>
+                <li class="nav-item  {{ $page == 'lapangan'?'active':'';}} ">
+                    <a href="{{url('fields/')}}">
+                        <i class="fas fa-grip-vertical"></i>
                         <p>Lapangan</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="widgets.html">
-                        <i class="fas fa-desktop"></i>
+                        <!-- <i class="fas fa-desktop"></i> -->
+                        <i class="fa-solid fa-book-bookmark"></i>
                         <p>Boking</p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="../../documentation/index.html">
-                        <i class="fas fa-file"></i>
-                        <p>Documentation</p>
-                        <span class="badge badge-secondary">1</span>
-                    </a>
-                </li>
+
                 <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#submenu">
                         <i class="fas fa-bars"></i>
