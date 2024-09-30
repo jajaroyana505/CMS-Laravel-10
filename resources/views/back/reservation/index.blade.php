@@ -87,23 +87,7 @@
                         <tbody>
                             <!-- Data reservasi akan di-load di sini melalui AJAX -->
 
-                            @foreach ($reservations as $day)
-                            <tr>
-                                <th>{{ $day['date'] }}</th>
 
-                                @foreach ($day['times'] as $key => $time)
-
-                                @if ($time['status'] == 'booked' )
-                                <td class="bg-success">{{$time['time'] }}</td>
-                                @else
-                                <td class=" ">
-                                    <a href="#" onclick="addReservation(this)" data-date="{{ $day['date'] }}" data-time="{{$time['time'] }}">{{$time['time'] }}</a>
-                                </td>
-                                @endif
-
-                                @endforeach
-                            </tr>
-                            @endforeach
                         </tbody>
                     </table>
 
@@ -142,10 +126,18 @@
 
 @push('js')
 <script>
-    function addReservation(this) {
+    function addReservation(element) {
         // console.log()
-        alert(this.data('date'));
+        // alert(element.data('date'));
+        const date = $(element).data('date');
+        const time = $(element).data('time');
+        alert(`Tanggal: ${date}, Waktu: ${time}`);
     }
+    $(document).ready(function() {
+
+    });
+
+    loadReservations()
 
     function loadReservations() {
 
@@ -174,7 +166,7 @@
                             if (time.status === 'booked') {
                                 tableBody += '<td class="bg-success">' + time.time + '</td>';
                             } else {
-                                tableBody += '<td>' + time.time + '</td>';
+                                tableBody += '<td >' + '<a href="#" onclick="addReservation(this)" data-date="' + day.date + '" data-time="' + time.time + '">' + time.time + '</a>' + '</td>';
                             }
                         });
 
@@ -192,12 +184,6 @@
             }
         });
     }
-    $(document).ready(function() {
-        // Fungsi untuk memuat data reservasi
-
-        // Panggil fungsi untuk memuat data saat halaman dimuat
-        // loadReservations();
-    });
 </script>
 
 @endpush

@@ -16,23 +16,17 @@ class ReservasiController extends Controller
      */
     public function index()
     {
-        // $data = $this->_generateTable(['2024-09-10', '2024-09-15']);
-
-        // print_r($data);
-        // die;
-
-
         if (request()->ajax()) {
-
-            $dateRange = [request()->input('start'), request()->input('end')]; // Misalkan rentang tanggal
+            $dateRange = [
+                request()->input('start') != '' ? request()->input('start') : date('Y-m-d', time()),
+                request()->input('end') != '' ? request()->input('end') : (new DateTime())->modify('+6 day')->format('Y-m-d')
+            ]; // Misalkan rentang tanggal
             $reservations = $this->_generateTable($dateRange); // Panggil fungsi untuk generate data
-
             return response()->json([
                 'status' => 'success',
                 'data' => $reservations
             ]);
         }
-
 
         $curentDate = date('Y-m-d', time());
         $_dateStart = '2024-09-10';
@@ -64,7 +58,7 @@ class ReservasiController extends Controller
         // Inisialisasi data reservasi tabel
         $tableReservasi = [];
         $startTime = 10; // Jam mulai
-        $endTime = 22;   // Jam berakhir
+        $endTime = 22;   // J+am berakhir
 
         // Looping berdasarkan jumlah hari
         for ($i = 0; $i <= $interval->days; $i++) {
